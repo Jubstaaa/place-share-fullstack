@@ -4,7 +4,7 @@ import Card from "../../../components/UIElements/Card";
 
 function UsersList({ users }) {
   return (
-    <div>
+    <>
       {users.length === 0 ? (
         <Card>
           <div className="text-center">
@@ -18,7 +18,7 @@ function UsersList({ users }) {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

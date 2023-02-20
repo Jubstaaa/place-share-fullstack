@@ -5,7 +5,7 @@ import Card from "../../../components/UIElements/Card";
 
 function UserItem({ item }) {
   return (
-    <li className="m-4 w-1/3">
+    <li className="m-4 w-full md:w-1/3">
       <Card>
         <Link
           to={`${item.id}/places`}
