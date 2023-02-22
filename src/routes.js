@@ -2,6 +2,7 @@ import Users from "./pages/Users";
 import Layout from "./components/Layout";
 import NewPlace from "./pages/NewPlace";
 import UserPlaces from "./pages/UserPlaces";
+import UpdatePlace from "./pages/UpdatePlace";
 
 const routes = [
   {
@@ -19,6 +20,10 @@ const routes = [
       {
         path: "/:userId/places",
         element: <UserPlaces />,
+      },
+      {
+        path: "/places/:placeId",
+        element: <UpdatePlace />,
       },
     ],
   },
