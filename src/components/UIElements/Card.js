@@ -1,8 +1,10 @@
 import React from "react";
 
-function Card({ children }) {
+function Card({ children, className }) {
   return (
-    <div className="shadow-md rounded-md  overflow-hidden bg-white">
+    <div
+      className={`shadow-md rounded-md p-4 m-0 overflow-hidden bg-white ${className}`}
+    >
       {children}
     </div>
   );

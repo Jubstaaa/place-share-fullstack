@@ -6,10 +6,20 @@ import Map from "../../../components/UIElements/Map";
 
 function PlaceItem({ item }) {
   const [showMap, setShowMap] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
 
   const closeMapHandler = () => setShowMap(false);
+
+  const showDeleteWarningHandler = () => setShowConfirmModal(true);
+
+  const cancelDeleteWarningHandler = () => setShowConfirmModal(false);
+
+  const confirmDeleteWarningHandler = () => {
+    setShowConfirmModal(false);
+    console.log("DELETING...");
+  };
 
   return (
     <>
@@ -22,6 +32,27 @@ function PlaceItem({ item }) {
         <div className="h-80 w-full">
           <Map center={item.location} zoom={16} />
         </div>
+      </Modal>
+      <Modal
+        show={showConfirmModal}
+        onCancel={cancelDeleteWarningHandler}
+        header="Are you sure?"
+        footerClass=""
+        footer={
+          <>
+            <Button inverse onClick={cancelDeleteWarningHandler}>
+              CANCEL
+            </Button>
+            <Button danger onClick={confirmDeleteWarningHandler}>
+              DELETE
+            </Button>
+          </>
+        }
+      >
+        <p>
+          Do you want to proceed and delete this place? Please note that it
+          can't be undone thereafter.
+        </p>
       </Modal>
       <li className="my-4">
         <Card>
@@ -42,7 +73,9 @@ function PlaceItem({ item }) {
               VIEW ON MAP
             </Button>
             <Button to={`/places/${item.id}`}>EDIT</Button>
-            <Button danger>DELETE</Button>
+            <Button danger onClick={showDeleteWarningHandler}>
+              DELETE
+            </Button>
           </div>
         </Card>
       </li>

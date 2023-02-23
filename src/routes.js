@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import NewPlace from "./pages/NewPlace";
 import UserPlaces from "./pages/UserPlaces";
 import UpdatePlace from "./pages/UpdatePlace";
+import Auth from "./pages/Auth";
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
       {
         path: "/places/:placeId",
         element: <UpdatePlace />,
+      },
+      {
+        path: "/auth",
+        element: <Auth />,
       },
     ],
   },

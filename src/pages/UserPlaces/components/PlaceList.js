@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PlaceItem from "./PlaceItem";
 import Card from "../../../components/UIElements/Card";
+import Button from "../../../components/FormElements/Button";
 
 function PlaceList({ places }) {
   return (
@@ -10,7 +11,7 @@ function PlaceList({ places }) {
         <Card>
           <div className="placeList text-center">
             <h2>No places found. Maybe create one?</h2>
-            <button>Share Place</button>
+            <Button to="/places/new">Share Place</Button>
           </div>
         </Card>
       ) : (
