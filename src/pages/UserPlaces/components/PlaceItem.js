@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../../../components/UIElements/Card";
 import Button from "../../../components/FormElements/Button";
 import Modal from "../../../components/UIElements/Modal";
 import Map from "../../../components/UIElements/Map";
+import { AuthContext } from "../../../context/auth-context";
 
 function PlaceItem({ item }) {
+  const auth = useContext(AuthContext);
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -72,10 +74,14 @@ function PlaceItem({ item }) {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            <Button to={`/places/${item.id}`}>EDIT</Button>
-            <Button danger onClick={showDeleteWarningHandler}>
-              DELETE
-            </Button>
+            {auth.isLoggedIn && (
+              <>
+                <Button to={`/places/${item.id}`}>EDIT</Button>
+                <Button danger onClick={showDeleteWarningHandler}>
+                  DELETE
+                </Button>
+              </>
+            )}
           </div>
         </Card>
       </li>

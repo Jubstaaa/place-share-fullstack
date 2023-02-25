@@ -4,6 +4,7 @@ import NewPlace from "./pages/NewPlace";
 import UserPlaces from "./pages/UserPlaces";
 import UpdatePlace from "./pages/UpdatePlace";
 import Auth from "./pages/Auth";
+import PrivateRoute from "./components/PrivateRoute";
 
 const routes = [
   {
@@ -16,6 +17,7 @@ const routes = [
       },
       {
         path: "/places/new",
+        auth: true,
         element: <NewPlace />,
       },
       {
@@ -24,6 +26,7 @@ const routes = [
       },
       {
         path: "/places/:placeId",
+        auth: true,
         element: <UpdatePlace />,
       },
       {
@@ -34,4 +37,15 @@ const routes = [
   },
 ];
 
-export default routes;
+const authCheck = (routes) =>
+  routes.map((route) => {
+    if (route?.auth) {
+      route.element = <PrivateRoute>{route.element}</PrivateRoute>;
+    }
+    if (route?.children) {
+      route.children = authCheck(route.children);
+    }
+    return route;
+  });
+
+export default authCheck(routes);
